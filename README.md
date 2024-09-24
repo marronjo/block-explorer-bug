@@ -1,66 +1,20 @@
-## Foundry
+## Fhenix Helium Block Explorer Bug
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+### Explanation
+When a contract is deployed that deploys another contract, it should be shown in the block explorer as a separate internal transaction. This does not appear on the fhenix explorer. Below shows the comparison between Sepolia and Fhenix to show the difference in behaviour.
 
-Foundry consists of:
+### How to run
+1. Deploy to Fhenix / Sepolia    
+* `forge create src/One.sol:One --private-key $PRIVATE_KEY --rpc-url $FHENIX_URL`    
+* `forge create src/One.sol:One --private-key $PRIVATE_KEY --rpc-url $SEPOLIA_URL`    
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+2. Check Block Explorers with deployed contract addresses from above  
+* [Sepolia Example](https://sepolia.etherscan.io/address/0x910754D1bb80619DA094d6E3eFb6c8E4486a51F2#internaltx)
+* [Fhenix Example](https://explorer.helium.fhenix.zone/address/0xE9f647dB9047Ce51D8a4DA785A96Dc2ADB38f660?tab=internal_txns)
 
-## Documentation
+3. Check if any internal txn is present in the deployed contract  
+* Ethereum Sepolia:  
+<img align="center" src="./assets/ethereum sepolia.png">
 
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+* Fhenix Helium:
+<img align="center" src="./assets/fhenix helium.png">
